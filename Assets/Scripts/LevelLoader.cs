@@ -12,7 +12,7 @@ public class LevelLoader : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             //StartCoroutine(CarregarFase("SampleScene"));
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(0);
         }
 
         ////corrotina

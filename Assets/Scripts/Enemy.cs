@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,9 +9,6 @@ public class Enemy : MonoBehaviour
    public Transform player;
    public NavMeshAgent nav;
    public Animator Anim;
-
-   public GameObject Player;
-   public Vector3 teleporte;
    
 
    private bool isWalking;
@@ -36,14 +34,6 @@ public class Enemy : MonoBehaviour
         else
         {
             isWalking = false;
-            /*if(distance > 5)
-            {
-                Anim.SetInteger("Mode", 0);
-            }
-            else 
-            {
-                Anim.SetInteger("Mode", 2);
-            }*/
         }
 
         UpdateAnimator();
@@ -54,8 +44,16 @@ public class Enemy : MonoBehaviour
         Anim.SetBool("isWalking", isWalking);
     }
 
-    private void OnTriggerStay(Collider collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        Player.transform.position = teleporte;
+        if (collision.CompareTag("Player"))
+        {
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene(1);
     }
 }
