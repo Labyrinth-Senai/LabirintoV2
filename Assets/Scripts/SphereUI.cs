@@ -24,6 +24,7 @@ public class SphereUI : MonoBehaviour
         if (distance < 50)
         {
             nav.destination = jogador.position;
+            rb.useGravity = true;
         }
     }
 
