@@ -4,8 +4,8 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float remainingTime;
-    private float timer;
+    public float remainingTime;
+    public float timer;
     // Update is called once per frame
     void Update()
     {
