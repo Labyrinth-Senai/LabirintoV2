@@ -5,10 +5,11 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
+    private float timer;
     // Update is called once per frame
     void Update()
     {
-        if (remainingTime > 0)
+        /*if (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
         }else if (remainingTime < 1)
@@ -16,9 +17,12 @@ public class Timer : MonoBehaviour
             remainingTime = 0;
            
             //load scene GameOver();
-        }
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
+        }*/ //Decremento do tempo
+
+        timer += Time.deltaTime;
+
+        int minutes = Mathf.FloorToInt(timer / 60);
+        int seconds = Mathf.FloorToInt(timer % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
