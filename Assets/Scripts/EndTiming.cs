@@ -9,29 +9,18 @@ public class EndTiming : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Pega o tempo armazenado
+        float storedTime = PlayerPrefs.GetFloat("StoredTime", 0f);
 
-        if (Timer == null) // Se Timer não foi atribuído manualmente
-        {
+        int minutes = Mathf.FloorToInt(storedTime / 60);
+        int seconds = Mathf.FloorToInt(storedTime % 60);
 
-            
-            int minutes = Mathf.FloorToInt(Timer.timer / 60);
-            int seconds = Mathf.FloorToInt(Timer.timer % 60);
-
-
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-        }
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject); // Garante que o objeto persista entre as cenas
     }
 }
 

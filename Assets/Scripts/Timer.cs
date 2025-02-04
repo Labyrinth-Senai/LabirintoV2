@@ -6,6 +6,13 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
     public float remainingTime;
     public float timer;
+
+    void Start()
+    {
+        // Quando a cena começa, recupera o timer salvo (caso exista)
+        timer = PlayerPrefs.GetFloat("StoredTime", 0f);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -25,5 +32,8 @@ public class Timer : MonoBehaviour
         int seconds = Mathf.FloorToInt(timer % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        // Salva o timer sempre que ele for alterado
+        PlayerPrefs.SetFloat("StoredTime", timer);
     }
 }
