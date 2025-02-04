@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -35,5 +36,26 @@ public class Timer : MonoBehaviour
 
         // Salva o timer sempre que ele for alterado
         PlayerPrefs.SetFloat("StoredTime", timer);
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded; // Registra o evento de cena carregada
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // Remove o evento quando o objeto for destruído
+    }
+
+    // Método chamado quando a cena for carregada
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Tample Run") // Nome da sua primeira cena
+        {
+            // Reseta o timer
+            timer = 0f;
+            PlayerPrefs.SetFloat("StoredTime", timer); // Salva o valor resetado
+        }
     }
 }

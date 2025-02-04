@@ -17,10 +17,5 @@ public class EndTiming : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject); // Garante que o objeto persista entre as cenas
-    }
 }
 
